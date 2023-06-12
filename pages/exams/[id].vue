@@ -161,13 +161,16 @@ const tableData = computed(() => {
 
         <div v-if="examDetail">
 
-            <div class="flex flex-row mt-10 mb-3 mx-3">
+            <div class="flex flex-row mt-10 mb-3 mx-3 align-middle">
+                <NuxtLink :to="`/${examDetail.examGroupId}`">
+                        <Icon name="mdi:chevron-left" class="h-8 w-8  "></Icon>
+                    </NuxtLink>
                 <Icon name="iconoir:page" class="w-8 h-8 mr-2 ml-10"></Icon>
                 <p class="text-3xl font-md">{{ examDetail.name }}</p>
             </div>
             <div v-if="showGradeReview" class="ml-10 mb-10">
                 <h1 class="text-xl mt-10 font-bold">
-                    Review
+                   You got  {{ questionListStore.grade }} / {{ examDetail.numberOfQuestions }} {{examDetail.numberOfQuestions ===1  ? 'question' : 'questions'}} correct
                 </h1>
                 <div v-for="question in questionListStore.questionList">
                     <div class="p-4">

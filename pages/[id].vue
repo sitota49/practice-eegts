@@ -178,7 +178,6 @@ const startExam = (examId :string)=>{
                                     <th class="whitespace-nowrap"></th>
                                     <th class="whitespace-nowrap w-2/12">Exams</th>
                                     <th class="text-center whitespace-nowrap w-2/12">Number of Questions</th>
-
                                     <th class=" text-center whitespace-nowrap w-2/12">Exam Duration(mins)</th>
                                     <th class="text-center whitespace-nowrap w-full">ACTIONS</th>
                                 </tr>
