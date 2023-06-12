@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useQuestionListStore } from '~/stores/questions';
+const questionListStore = useQuestionListStore();
 const route = useRoute()
 const examGroupId = route.params.id as string;
 const isReloading = ref(false);
@@ -41,14 +43,17 @@ const resetSearch = () => {
         page.value = 1;
     }
 }
-// exam status text
+const startExam = (examId :string)=>{
+    questionListStore.resetState();
+    navigateTo(`/exams/${examId}`)
+}
 
 
 
 </script>
 <template>
     <TopBar />
-    <div class="w-3/4 mx-auto"> <!-- after create exam btn starts here -->
+    <div class="w-3/4 mx-auto"> 
         <div class="grid grid-cols-12 gap-6 mt-5">
             <div class="intro-y col-span-12 flex flex-row sm:flex-nowrap items-center mt-2">
 
@@ -203,7 +208,7 @@ const resetSearch = () => {
 
 
                                         <div class="flex justify-center items-center">
-                                            <a class="text-success flex items-center mr-3" :href="`/exams/${exam.id}`">
+                                            <a class="text-success flex items-center mr-3" @click="startExam(exam.id)">
                                                 <Icon name="material-symbols:play-circle" class="w-4 h-4"></Icon> Start Exam
                                             </a>
 

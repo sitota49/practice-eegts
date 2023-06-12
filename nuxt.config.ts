@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     "nuxt-icon", 
     "@nuxtjs/supabase",  
    '@vueuse/nuxt',
+   '@pinia/nuxt',  '@pinia-plugin-persistedstate/nuxt', 
   ],
   build: {
     transpile: [

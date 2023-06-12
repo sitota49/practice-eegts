@@ -110,5 +110,44 @@ export const examRouter = router({
             }
 
         }),
-
+        getExamDetail : publicProcedure
+        .input(
+            z.object({
+                examId: z.string()
+            })
+        ).query(async ({ctx, input})=>{
+            const exam = await ctx.prisma.exam.findUnique({
+                where: {
+                    id: input.examId
+                },
+                include: {
+                    Questions: {
+                        select: {
+                            id: true,
+                            title: true,
+                            image: true,
+                            QuestionAnswer: {
+                                select: {
+                                    choiceId: true,
+                                }
+                            },
+                            Choice :{
+                                select: {
+                                    id: true,
+                                    title: true,
+                                    image: true,
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            if (!exam) {
+                throw new TRPCError({
+                    code: "NOT_FOUND",
+                    message: "Exam not found",
+                });
+            }
+            return exam;
+        })
 });
